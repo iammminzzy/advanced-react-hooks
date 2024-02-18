@@ -5,8 +5,15 @@ import * as React from 'react'
 
 function MessagesDisplay({messages}) {
   const containerRef = React.useRef()
-  // 🐨 replace useEffect with useLayoutEffect
-  React.useEffect(() => {
+  /*
+    When a button is clicked, the following message appears:
+
+    1. A message is created (updating DOM).
+    2. The page is scrolled by the length of the message << If scrolling is desired at this point, use `useLayoutEffect`.
+    3. The created message is painted on the screen (painting).
+    4. The page is scrolled by the length of the message. << If scrolling is desired at this point, use `useEffect`.
+*/
+  React.useLayoutEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight
   })
 
